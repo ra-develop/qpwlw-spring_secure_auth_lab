@@ -1,14 +1,13 @@
 package com.example.secureauthapp.model;
 
 public class User {
-    private String username;
-    private String password;
-    private String role; // Add a role field
+    private String username; // Username of the user
+    private String password; // Password of the user (encoded)
 
-    public User(String username, String password, String role) {
+    // Constructor
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
     }
 
     // Getters and Setters
@@ -26,13 +25,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
     }
 }
