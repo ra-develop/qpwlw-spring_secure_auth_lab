@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.secureapp.service.CustomUserDetailsService;
+import com.example.secureauthapp.service.CustomUserDetailsService;
 
 @Controller
 public class WebsiteController {
@@ -18,7 +18,7 @@ public class WebsiteController {
     private final CustomUserDetailsService userDetailsService;
     private final AuthenticationManager authenticationManager;
 
-    public GreetingController(CustomUserDetailsService userDetailsService, AuthenticationManager authenticationManager) {
+    public WebsiteController(CustomUserDetailsService userDetailsService, AuthenticationManager authenticationManager) {
         this.userDetailsService = userDetailsService;
         this.authenticationManager = authenticationManager;
     }

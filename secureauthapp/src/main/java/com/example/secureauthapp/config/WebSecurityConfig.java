@@ -1,6 +1,6 @@
 package com.example.secureauthapp.config;
 
-import com.example.secureapp.service.CustomUserDetailsService;
+import com.example.secureauthapp.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
