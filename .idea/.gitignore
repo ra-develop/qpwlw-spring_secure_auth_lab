@@ -1,0 +1,12 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Environment-dependent path to Maven home directory
+/mavenHomeManager.xml
+/compiler.xml
+/jarRepositories.xml
+/misc.xml
+/modules.xml
+/qpwlw-spring_secure_auth_lab.iml
+/vcs.xml
+/encodings.xml
