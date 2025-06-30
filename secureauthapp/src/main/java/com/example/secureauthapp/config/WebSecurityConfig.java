@@ -24,29 +24,30 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/register", "/login").permitAll() // Allow access to registration and login pages
-                .requestMatchers("/greet").authenticated() // Secure the /greet endpoint
-                .anyRequest().permitAll() // Allow access to all other endpoints
-            )
-            .formLogin(form -> form
-                .loginPage("/login") // Custom login page
-                .defaultSuccessUrl("/greet", true) // Redirect to /greet after successful login
-                .permitAll()
-            )
-            .logout(logout -> logout
-                .permitAll()
-            );
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/register", "/login").permitAll() // Allow access to registration and login pages
+                        .requestMatchers("/admin").hasRole("ADMIN") // Restrict /admin to users with the ADMIN role
+                        .requestMatchers("/viewer").hasRole("STAFF") // Restrict /viewer to users with the STAFF role
+                        .anyRequest().authenticated() // Require authentication for all other endpoints
+                )
+                .formLogin(form -> form
+                        .loginPage("/login") // Custom login page
+                        .defaultSuccessUrl("/home", true) // Redirect to /greet after successful login
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .permitAll()
+                );
         return http.build();
     }
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder =
-            http.getSharedObject(AuthenticationManagerBuilder.class);
+                http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder
-            .userDetailsService(userDetailsService) // Use your custom UserDetailsService
-            .passwordEncoder(passwordEncoder()); // Use the password encoder
+                .userDetailsService(userDetailsService) // Use your custom UserDetailsService
+                .passwordEncoder(passwordEncoder()); // Use the password encoder
         return authenticationManagerBuilder.build();
     }
 

@@ -25,17 +25,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         return org.springframework.security.core.userdetails.User.builder()
-            .username(user.getUsername())
-            .password(user.getPassword())
-            .build();
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .roles(user.getRole())
+                .build();
     }
 
-    public void registerUser(String username, String password) throws Exception {
+    public void registerUser(String username, String password, String role) throws Exception {
         if(users.containsKey(username)) {
             throw new Exception("User already exists");
         } else {
             String encodedPassword = passwordEncoder.encode(password);
-            users.put(username, new User(username, encodedPassword));    
+            users.put(username, new User(username, encodedPassword, role));
         }
     }
 }
